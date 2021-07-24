@@ -1,0 +1,164 @@
+{% extends 'extends_common.html' %}
+{% load show_number_hou %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    {% block head_content %}
+    <link rel="stylesheet" href="/static/css/number_detail.css">
+    <script src="/static/js/jquery-2.1.4.min.js"></script>
+    {% endblock %}
+
+</head>
+<body>
+
+    {% block main_content %}
+    <div class="content">
+
+        <h3> 后三号码分析 </h3>
+        <h3>最后更新时间 : {{ nowtime }}</h3>
+
+        <table border="1" class="table">
+        <thead class="thead">
+        <tr>
+            <td rowspan="2">期号</td>
+            <td style="width: 60px">号码</td>
+            <td colspan="3">百位</td>
+            <td colspan="3">十位</td>
+            <td colspan="3">个位</td>
+            <td colspan="4">大小比</td>
+            <td>间隙</td>
+            <td colspan="4">奇偶比</td>
+            <td>间隙</td>
+            <td colspan="4">质合比</td>
+            <td colspan="4">余0号码</td>
+            <td colspan="3">余1号码</td>
+            <td colspan="3">余2号码</td>
+            <td colspan="3">重号类型</td>
+            <td rowspan="2">时间</td>
+        </tr>
+        <tr>
+            <td>全部</td>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+
+            <td>0:3</td>
+            <td>1:2</td>
+            <td>2:1</td>
+            <td>3:0</td>
+
+            <td></td>
+
+            <td>0:3</td>
+            <td>1:2</td>
+            <td>2:1</td>
+            <td>3:0</td>
+
+            <td></td>
+
+            <td>0:3</td>
+            <td>1:2</td>
+            <td>2:1</td>
+            <td>3:0</td>
+
+            <td>0</td>
+            <td>3</td>
+            <td>6</td>
+            <td>9</td>
+
+            <td>1</td>
+            <td>4</td>
+            <td>7</td>
+
+            <td>2</td>
+            <td>5</td>
+            <td>8</td>
+
+            <td class="num_type">组三</td>
+            <td class="num_type">组六</td>
+            <td class="num_type">豹子</td>
+        </tr>
+        </thead>
+        <tbody>
+
+            {% for k,v in SSC_NUMBER.items %}
+            <tr>
+                <td>{% show_qihao k %}</td>
+                <td class="num">
+                    {% show_number v %}
+                </td>
+
+                {% baiwei_check v %}
+
+                {% shiwei_check v %}
+
+                {% gewei_check v %}
+
+                {% check_BS v %}
+
+                <td class="blank_num"></td>
+
+                {% check_qiou v %}
+
+                <td class="blank_num"></td>
+
+                {% check_zhihe v %}
+
+                <!--
+                <td class="blank_num"></td>
+                <td class="blank_num"></td>
+                <td class="blank_num"></td>
+                <td class="blank_num"></td>
+                -->
+
+                {% yu_zero v %}
+
+                {% yu_one v %}
+
+                {% yu_two v %}
+
+                {% number_type v %}
+
+                {% check_times k %}
+            </tr>
+            {% endfor %}
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>{{ next_seq }}</td>
+                <td colspan="10"></td>
+                <td colspan="4">大小比</td>
+                <td></td>
+                <td colspan="4">奇偶比</td>
+                <td></td>
+                <td colspan="4">质合比</td>
+                <td colspan="14"></td>
+            </tr>
+        </tfoot>
+
+    </table>
+
+
+    <h3>最后更新时间 : {{ nowtime }}</h3>
+
+    </div>
+    {% endblock %}
+
+    {% block left_msg %}
+        {{ block.super }}
+    {% endblock %}
+
+</body>
+</html>

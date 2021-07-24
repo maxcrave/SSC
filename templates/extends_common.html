@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    {% block head_content %}{% endblock %}
+    {% block css_content %}{% endblock %}
+</head>
+<body>
+
+    {% block main_content %}{% endblock %}
+
+
+    {% block left_msg %}
+    <style>
+        .left-box{
+            height: 300px;
+            width:100px;
+            position: fixed;
+            top: 20px;
+            left: 130px;
+            font-size: 14px;
+        }
+        .left-box a{
+            text-decoration: none;
+            color: #1b6d85;
+        }
+    </style>
+    <div class="left-box">
+        <p><a href="/ssc/0">四星 预测分析</a></p>
+        <p><a href="/ssc/hou">后三号码分析</a></p>
+        <p><a href="/ssc/zhong">中三号码分析</a></p>
+        <p><a href="/ssc/qian">前三号码分析</a></p>
+        <p><a href="/ssc/3">四星 胆码分析</a></p>
+        <p><a href="/ssc/4">四星 做号</a></p>
+        <div style="height: 20px;width: 10px;"></div>
+        <p><a href="/ssc/5">二星号码分析</a></p>
+        <p><a href="/ssc/6">前/中/后三 做号</a></p>
+        <p><a href="/ssc/7">前/中/后三 预测</a></p>
+    </div>
+    {% endblock left_msg %}
+
+    {% block main_script %}
+    {% endblock %}
+
+</body>
+</html>

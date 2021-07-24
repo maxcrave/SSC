@@ -1,0 +1,106 @@
+body{
+    font: 14px/1.5 Tahoma,Helvetica,Arial,'\5b8b\4f53',sans-serif;
+}
+.content{
+    width: 1180px;
+    margin: 0 auto;
+}
+.thead{
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.table{
+    border-collapse: collapse;
+    display: table;
+    border-spacing: 2px;
+    padding: 10px;
+    width: 1180px;
+    text-align: center;
+    border: 2px solid #d8d8d8;
+    background: url(http://p6.qhimg.com/t01905c37d539a00d59.png) repeat-x top #f7f7f7;
+}
+.blank_num{
+    background-color: #fefbd6;
+}
+.num{
+    font-size: 0;
+}
+.num_type{
+    font-size: 10px;
+}
+.num_type_1{
+    font-size: 10px;
+    background: #683535;
+    color: #fff;
+}
+.co_num{
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+}
+.last_num{
+    display: inline-block;
+    color: red;
+    font-size: 14px;
+    font-weight: 500;
+}
+.baiwei{
+    background-color: #D0E9FC;
+    width:20px;
+    color: gray;
+    font-size: 8px;
+}
+.ball_1{
+    display: inline-block;
+    width: 20px;
+    height: 24px;
+    text-align: center;
+    line-height: 25px;
+    color: #fff;
+    background: url(http://p4.qhimg.com/t01e6e5a194c150bfba.png) no-repeat;
+    zoom: 1;
+    position: relative;
+    font-size:12px;
+}
+.ball_2{
+    display: inline-block;
+    width: 20px;
+    height: 24px;
+    text-align: center;
+    line-height: 25px;
+    color: #fff;
+    background: url(http://p4.qhimg.com/t01e6e5a194c150bfba.png) no-repeat;
+    background-position: 0px -102px;
+    zoom: 1;
+    position: relative;
+    font-size:12px;
+}
+.shiwei{
+    background-color: #EADCA7;
+    width:20px;
+    color: gray;
+    font-size: 8px;
+}
+.yu_0{
+    background-color: #D0E9FC;
+    width:20px;
+    color: gray;
+    font-size: 8px;
+}
+.yu_1{
+    background-color: #EADCA7;
+    width:20px;
+    color: gray;
+    font-size: 8px;
+}
+.yu_2{
+    background-color: #D0E9FC;
+    width:20px;
+    color: gray;
+    font-size: 8px;
+}
+.tdbg{
+    background: #ffddc4;
+    color: #f00;
+}

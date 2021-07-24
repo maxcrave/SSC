@@ -1,0 +1,84 @@
+{% extends 'extends_common.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    {% block head_content %}
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+    {% endblock %}]
+</head>
+
+<body>
+
+    {% block main_content %}
+    <div class="container">
+
+
+        <div class="col-lg-6 col-lg-offset-3">
+
+            <h4> 三星做号 </h4>
+            <h4>最后更新时间 : {{ nowtime }}</h4>
+            <br>
+
+            <form method="POST" action="/ssc/6">{% csrf_token %}
+                <div class="form-group">
+                    <label >三星胆码 ①  / 出 1 2 个</label>
+                    <input type="text" name="danma_1" class="form-control" placeholder="0189" autocomplete="off" maxlength="4">
+                </div>
+
+                <div class="form-group">
+                    <label >后三5码 ①</label>
+                    <input type="text" name="last_three" class="form-control" placeholder="" autocomplete="off" maxlength="5">
+                </div>
+
+                <div class="form-group">
+                    <label >后二6码 ①</label>
+                    <input type="text" name="last_two" class="form-control" placeholder="" autocomplete="off" maxlength="7">
+                </div>
+
+                <button type="submit" class="btn btn-success">提交做号</button>
+
+            </form>
+
+            <br>
+            {% if SSC_NUM_Buffer %}
+                <button class="btn btn-info" id="btn_copy" onclick="btn_copy()">点击复制号码</button>
+                <h4> 号码显示区域 : {{ SSC_SIZE }}注,共 {{ need_money }} 元</h4>
+                {% for k,v in filter_dict.items %}
+                    <h5>{{ k }} : {{ v }}</h5>
+                {% endfor %}
+                <textarea class="form-control" id="co_number" cols="30" rows="10" style="resize: vertical">{{ SSC_NUM_Buffer }}</textarea>
+            {% endif %}
+
+            <br>
+            <h4>最后更新时间 : {{ nowtime }}</h4>
+            <br>
+
+        </div>
+    </div>
+
+    <script src="/static/js/jquery-2.1.4.min.js"></script>
+    <script>
+        function btn_copy(){
+            $('#co_number').select();
+            document.execCommand("copy");
+            alert('Copy !');
+        }
+
+
+    </script>
+
+    {% endblock %}
+
+    {% block left_msg %}
+        {{ block.super }}
+    {% endblock %}
+
+</body>
+</html>

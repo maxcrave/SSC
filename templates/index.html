@@ -1,0 +1,105 @@
+{% load ssc_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-2.1.4.min.js"></script>
+    <style>
+        .tdbg{
+            color: #6c6c6c;
+            background: #f3f2f2;
+        }
+        .num{
+            color: #780000;
+            font-size: 14px;
+            font-weight: normal;
+        }
+        .green{
+            background-color: mediumspringgreen;
+        }
+        .red{
+            background-color: indianred;
+        }
+        .no_data{
+            background-color: #dddddd;
+        }
+        .warring{
+            background-color: yellow;
+        }
+        .bg-14{
+            background: #683535;
+            color: #fff;
+        }
+        .bg-15{
+            background: #f3f2f2;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h3>{{ now_time }}</h3>
+
+    <table class="">
+        <tbody>
+            <tr align="center">
+                <td>期号</td>
+                <td>奖号</td>
+                <td>0189 情况</td>
+                <td>1458 情况</td>
+                <td>生成情况</td>
+                <td>购买后余额</td>
+                <td>中奖情况</td>
+                <td>开奖后余额</td>
+                <td>倍投</td>
+                <td>开奖情况</td>
+                <td>开奖情况</td>
+            </tr>
+
+            {% for k,v in SSC.items %}
+            <tr align="center">
+                <td class="tdbg">{% show_qihao k %}</td>
+                <td>
+                    <strong class="num">{{ v }}</strong>
+                </td>
+
+                <!-- 号码判断情况 -->
+
+                {% check_1 v '0189' %}
+
+                {% check_1 v '1458' %}
+
+
+                <!-- 生成号码情况 -->
+
+                <td>
+                    {% produce_files request k SSC SSC_cy%}
+                </td>
+
+
+                {% before_detail request%}
+
+                {% check_num request k SSC SSC_cy %}
+
+                <td>
+                    {% money_detail request%}
+                </td>
+
+                <td>
+                    {% beitou_detail request%}
+                </td>
+
+                {% num_detail v %}
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+    <h3>盈亏: {% rep_money request %} 元</h3>
+    <h3>最大连挂 {{ request.session.max_fuck }}</h3>
+
+</body>
+</html>

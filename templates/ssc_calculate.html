@@ -1,0 +1,157 @@
+{% extends 'extends_common.html' %}
+{% load calculate_ssc_yuce %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% block head_content %}
+    <link rel="stylesheet" href="/static/css/number_detail.css">
+    <style>
+        .content{
+            width:1100px;
+        }
+        .table{
+            width: 1100px;
+            padding: 4px;
+        }
+        .good{
+            font-family: 微软雅黑;
+            color: #c1e2b3;
+            background-color: indianred;
+        }
+        .bad{
+            font-family: 微软雅黑;
+            color: #000000;
+            background-color: mediumspringgreen;
+        }
+    </style>
+    <script src="/static/js/jquery-2.1.4.min.js"></script>
+    {% endblock %}
+</head>
+<body>
+
+    {% block main_content %}
+    <div class="content">
+
+        <h3> 四星 预测分析 </h3>
+        <h3>最后更新时间 : {{ nowtime }}</h3>
+
+        <table border="1" class="table">
+        <thead class="thead">
+        <tr>
+            <td rowspan="2">期号</td>
+            <td style="width: 60px">号码</td>
+
+            <td rowspan="2"> 四星胆码 ①</td>
+            <td rowspan="2">间隙</td>
+
+            <td rowspan="2"> 四星胆码 ②</td>
+            <td rowspan="2">间隙</td>
+
+            <td rowspan="2"> 中三5码 ①</td>
+            <td rowspan="2">间隙</td>
+
+            <td rowspan="2"> 后三5码 ①</td>
+            <td rowspan="2">间隙</td>
+
+            <td rowspan="2">时间</td>
+
+            <td rowspan="2">累计</td>
+
+
+        </tr>
+        <tr>
+            <td>全部</td>
+
+
+        </tr>
+        </thead>
+        <tbody>
+
+            {% for k,v in SSC_NUMBER.items %}
+            <tr name="yuce_div">
+                <td>{% show_qihao k %}</td>
+                <td class="num">
+                    {% show_number v %}
+                </td>
+
+                {% check_sixing_danma_1 k v %}
+
+
+                {% check_zhongsan k v %}
+                <td class="blank_num"></td>
+
+                {% check_housan k v %}
+                <td class="blank_num"></td>
+
+                {% check_times k %}
+
+                <td class="current_money">12.6</td>
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <td>{{ next_seq }}</td>
+                <td class="num">
+                    <span class="co_num">X</span>
+                    <span class="last_num co_num">XXXX</span>
+                </td>
+                {% yuce_danma next_seq %}
+
+                {% yuce_zhongsan next_seq %}
+
+                {% yuce_housan next_seq %}
+
+                <td>XX:XX</td>
+
+                <td>===</td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    <h3>最后更新时间 : {{ nowtime }}</h3>
+
+    </div>
+    {% endblock %}
+
+    {% block left_msg %}
+        {{ block.super }}
+    {% endblock %}
+
+    {% block main_script %}
+    <script type="text/javascript">
+
+        var c_money = 0;
+
+        var d = document.getElementsByName('yuce_div');
+        for(i=1;i<d.length;i++){
+            var pre_money = d[i-1].getElementsByClassName("current_money");
+            var current_money = d[i].getElementsByClassName("current_money");
+
+            var pre_money_num = parseFloat(pre_money[0].innerHTML);
+
+            var k = d[i].getElementsByClassName("bad");
+            console.log(k,k.length);
+            if(k.length==0){
+                console.log('good');
+                current_money[0].innerHTML = (pre_money_num + 6.9).toFixed(2)
+            }else{
+                console.log('bad');
+                current_money[0].innerHTML = (pre_money_num - 12.60).toFixed(2)
+            }
+
+
+        }
+
+    </script>
+    {% endblock %}
+
+</body>
+</html>
